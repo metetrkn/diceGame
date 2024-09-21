@@ -32,7 +32,7 @@ public class Menu {
                 "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*",
                 "Welcome to dice competition 1.0.1!",
                 "                                                   ",
-                "                                                   "};
+                "                                                  "};
 
         messagePrint(welcomeMessage); // Printing welcome message top to bottom line by line
 
@@ -92,13 +92,11 @@ public class Menu {
                     }
 
                 } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter only a digit! (1 or 2).");
-                    scanner.next(); // Clear invalid input
+                    /** BURADA ERROR WAR, EXCEPTION HANDLING SORUN VERIYOR, HALLEDILMESI GEREK */
                 }
             }
             scanner.close(); // Closing scanner
         }
-
     }
 
 

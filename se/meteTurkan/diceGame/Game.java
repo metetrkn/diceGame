@@ -2,12 +2,11 @@ package se.meteTurkan.diceGame;
 
 
 public class Game {
+    // Creating player objects
+    Player playerOne = new Player();
+    Player playerTwo = new Player();
+
     public void init() {
-        // Creating player objects
-        Player playerOne = new Player();
-        Player playerTwo = new Player();
-
-
         // Prompting player 1 to input their name
         System.out.print("Player-1, please enter your name: ");
         playerOne.setPlayerName();
@@ -25,9 +24,14 @@ public class Game {
                 playerTwo.playTurn(); // If modulus op returns 1-its 2nd players turn
             }
         }
+    }
 
+    // Printing out result
+    public void printScore() {
         // Score-table, winning
         System.out.printf("\n\nFinal Scores:\n%s ===> %i\t\t%ss ==> %i\n",
-                playerOne.getPlayerName(), playerOne.getPoint(), playerTwo.getPlayerName(), playerTwo.getPoint());
+        playerOne.getPlayerName(), playerOne.getPoint(), playerTwo.getPlayerName(), playerTwo.getPoint());
     }
+
+
 }
