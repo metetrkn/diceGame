@@ -1,8 +1,11 @@
 package se.meteTurkan.diceGame;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.LockSupport;
 import java.util.Scanner;
 
 public class Menu {
+    Scanner scanner = new Scanner(System.in); // Creating scanner object
 
     // Printing out message from top to bottom line by line func
     public void messagePrint(String[] message) {
@@ -60,42 +63,48 @@ public class Menu {
         messagePrint(farewellMessage); // Printing farewell message top to bottom line by line
     }
 
+    public void replay() {
+        System.out.println("\nDo you want to play one more turn?\n   1. Yes\n   2. No"); // Prompting user to choice if wants to play more
+        int playMore = scanner.nextInt(); // Getting users answer
+
+        if (playMore == 2) { // If user don't want to play more
+            Main.key = false; // While loop in main ends
+            scanner.close(); // Closing scanner object
+        }
+    }
+
 
     public void menu() {
-            Scanner scanner = new Scanner(System.in); // Creating scanner object
             int userInput; // Declaring user input
 
             while (true) {
                 System.out.print("Choice:\t");
-                try {
-                    userInput = scanner.nextInt(); // Read user input as int
 
-                    // Check if the input is either 1 or 2
-                    if (userInput == 1) {
-                        //Printing out login message
-                        for (char c: "Logging in...\n\n".toCharArray()) {
-                            System.out.print(c);
-                            Thread.sleep(150);
-                        }
-                        Game game = new Game();
-                        game.init();
-                        break;
-                    } else if (userInput == 2){ // Exit loop on valid input
-                        for (char c: "\nExiting...\n".toCharArray()) {
-                            System.out.print(c);
-                            Thread.sleep(150);
-                        }
-                        Farewell();
-                        System.exit(0); // Exit the game
-                    } else {
-                        System.out.println("Input must be either 1 or 2."); // Continue loop until valid input
+                userInput = scanner.nextInt(); // Read user input as int
+
+                // Check if the input is either 1 or 2
+                if (userInput == 1) {
+                    //Printing out login message
+                    for (char c: "Logging in...\n\n".toCharArray()) {
+                        System.out.print(c);
+                        LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
                     }
+                    Game game = new Game();
+                    game.init();
+                    break;
 
-                } catch (Exception e) {
-                    /** BURADA ERROR WAR, EXCEPTION HANDLING SORUN VERIYOR, HALLEDILMESI GEREK */
+                } else if (userInput == 2){ // Exit loop on valid input
+                    for (char c: "\nExiting...\n".toCharArray()) {
+                        System.out.print(c);
+                        LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
+                    }
+                    Farewell();
+                    System.exit(0); // Exit the game
+                } else {
+                    System.out.println("Input must be either 1 or 2."); // Continue loop until valid input
                 }
+
             }
-            scanner.close(); // Closing scanner
         }
     }
 

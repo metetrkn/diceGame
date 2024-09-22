@@ -15,7 +15,6 @@ public class Game {
         System.out.print("Player-2, please enter your name: ");
         playerTwo.setPlayerName();
 
-
         // Each player plays by their turn 2 times
         for (int i=0; i<4; i++) {
             if (i%2 == 0) {
@@ -29,7 +28,7 @@ public class Game {
     // Printing out result
     public void printScore() {
         // Score-table, winning
-        System.out.printf("\n\nFinal Scores:\n%s ===> %i\t\t%ss ==> %i\n",
+        System.out.printf("\n\nFinal Scores:\n%s ===> %d\t\t%ss ==> %d\n",
         playerOne.getPlayerName(), playerOne.getPoint(), playerTwo.getPlayerName(), playerTwo.getPoint());
     }
 
