@@ -21,11 +21,3 @@ public class Main {
 }
 
 
-/**
- * add option checcker
- * each time when user inputs a option
- * call checker function like in calculator
- *
- *
-
- */

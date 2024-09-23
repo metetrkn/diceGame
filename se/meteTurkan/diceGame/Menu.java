@@ -61,43 +61,37 @@ public class Menu {
         messagePrint(farewellMessage); // Printing farewell message top to bottom line by line
     }
 
+
+    OptionController controller = new OptionController(); // Creating option controller object
+
     public void replay() {
         System.out.println("\nDo you want to play one more turn?\n   1. Yes\n   2. No"); // Prompting user to choose if wants to play more
-        int playMore = scanner.nextInt(); // Getting user's answer
+        int playMore = controller.checker(); // Getting user's answer but checking if input is valid at the same time
 
         if (playMore == 2) { // If user doesn't want to play more
             Main.key = false; // While loop in main ends
         }
     }
 
+
     public void menu(Game game) { // Pass the game object as parameter
-        int userInput; // Declaring user input
+        int choice = controller.checker(); // Getting users choice of menu but checking if its valid at the same time
 
-        while (true) {
-            System.out.print("Choice:\t");
-
-            userInput = scanner.nextInt(); // Read user input as int
-
-            // Check if the input is either 1 or 2
-            if (userInput == 1) {
-                // Printing out login message
-                for (char c : "Logging in...\n\n".toCharArray()) {
-                    System.out.print(c);
-                    LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
-                }
-                game.init();
-                break;
-
-            } else if (userInput == 2) { // Exit loop on valid input
-                for (char c : "\nExiting...\n".toCharArray()) {
-                    System.out.print(c);
-                    LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
-                }
-                Farewell();
-                System.exit(0); // Exit the game
-            } else {
-                System.out.println("Input must be either 1 or 2."); // Continue loop until valid input
+        // Check if the input is either 1 or 2
+        if (choice == 1) {
+            // Printing out login message
+            for (char c : "Logging in...\n\n".toCharArray()) {
+                System.out.print(c);
+                LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
             }
+        game.init();
+        } else if (choice == 2) { // Exit loop on valid input
+            for (char c : "\nExiting...\n".toCharArray()) {
+                System.out.print(c);
+                LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
+            }
+            Farewell();
+            System.exit(0); // Exit the game
         }
     }
 }
