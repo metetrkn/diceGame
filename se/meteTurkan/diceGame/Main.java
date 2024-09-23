@@ -11,13 +11,21 @@ public class Main {
         // Game starts!
         while (key) {
             menu.printWelcome(); // Prints out welcoming message
-            menu.menu(); // Prompting user to input option in menu
+            menu.menu(game); // Pass the game object to the menu method
             game.printScore(); // Prints out final result of game
             menu.replay(); // Asking user if wants to play more
         }
-
         // Game ends!
         menu.Farewell(); // Prints out farewell message
     }
-
 }
+
+
+/**
+ * add option checcker
+ * each time when user inputs a option
+ * call checker function like in calculator
+ *
+ *
+
+ */

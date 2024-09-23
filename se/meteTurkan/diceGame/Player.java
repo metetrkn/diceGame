@@ -5,20 +5,25 @@ import java.util.Scanner;
 
 public class Player {
     // Class attributes
-    private int point = 0; // Players total point
+    private int point = 0; // Player's total point
     private String playerName; // Player name can be decided by user
 
+    // Creating scanner object
+    private Scanner scanner;
+
+    // Constructor to initialize the scanner object
+    public Player(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
     // Set functions
     public void setPoint(int point) {
         this.point += point;
     }
 
-    public void setPlayerName() {
-        playerName = scanner.nextLine(); // Capturing the username
-        this.playerName = playerName;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName; // Set player name
     }
-
 
     // Get functions
     public String getPlayerName() {
@@ -29,15 +34,12 @@ public class Player {
         return point;
     }
 
-
-    // Creating objects
-    Random random = new Random(); // Creating random object
-    Scanner scanner = new Scanner(System.in); // Creating scanner object
-
+    // Creating random object
+    Random random = new Random();
 
     // Each turn player actions
     public void playTurn() {
-        System.out.printf("\n%s, it is your turn! Press 'Enter' to dice the roll...", getPlayerName());
+        System.out.printf("\n%s, it is your turn! Press 'Enter' to roll the dice...", getPlayerName());
         scanner.nextLine(); // Wait for user input
         int roll = random.nextInt(6) + 1; // What player rolls
         setPoint(roll); // Updating total point of player

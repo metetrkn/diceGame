@@ -1,8 +1,8 @@
 package se.meteTurkan.diceGame;
 
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
-import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in); // Creating scanner object
@@ -13,13 +13,12 @@ public class Menu {
         for (String line : message) {
             System.out.println(line); // Print each line
             try {
-                Thread.sleep(140); // Sleep for 100 milliseconds
+                Thread.sleep(140); // Sleep for 140 milliseconds
             } catch (InterruptedException e) {
                 e.printStackTrace(); // Handle exception
             }
         }
     }
-
 
     // Welcoming user
     public void printWelcome() {
@@ -31,7 +30,7 @@ public class Menu {
                 "| |  | | ___| | ___ ___  _ __ ___   ___  | |_ ___   ",
                 "| |/\\| |/ _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ | __/ _ ",
                 "\\  /\\  /  __/ | (_| (_) | | | | | |  __/ | || (_) | ",
-                " \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|  \\__\\___/",
+                " \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|  \\__\\___/ ",
                 "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*",
                 "Welcome to dice competition 1.0.1!",
                 "                                                   ",
@@ -45,8 +44,7 @@ public class Menu {
                 "   2. Exit\n\n");
     }
 
-
-    public void Farewell(){
+    public void Farewell() {
         String[] farewellMessage = {
                 "*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-",
                 "                                        ",
@@ -64,54 +62,42 @@ public class Menu {
     }
 
     public void replay() {
-        System.out.println("\nDo you want to play one more turn?\n   1. Yes\n   2. No"); // Prompting user to choice if wants to play more
-        int playMore = scanner.nextInt(); // Getting users answer
+        System.out.println("\nDo you want to play one more turn?\n   1. Yes\n   2. No"); // Prompting user to choose if wants to play more
+        int playMore = scanner.nextInt(); // Getting user's answer
 
-        if (playMore == 2) { // If user don't want to play more
+        if (playMore == 2) { // If user doesn't want to play more
             Main.key = false; // While loop in main ends
-            scanner.close(); // Closing scanner object
         }
     }
 
+    public void menu(Game game) { // Pass the game object as parameter
+        int userInput; // Declaring user input
 
-    public void menu() {
-            int userInput; // Declaring user input
+        while (true) {
+            System.out.print("Choice:\t");
 
-            while (true) {
-                System.out.print("Choice:\t");
+            userInput = scanner.nextInt(); // Read user input as int
 
-                userInput = scanner.nextInt(); // Read user input as int
-
-                // Check if the input is either 1 or 2
-                if (userInput == 1) {
-                    //Printing out login message
-                    for (char c: "Logging in...\n\n".toCharArray()) {
-                        System.out.print(c);
-                        LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
-                    }
-                    Game game = new Game();
-                    game.init();
-                    break;
-
-                } else if (userInput == 2){ // Exit loop on valid input
-                    for (char c: "\nExiting...\n".toCharArray()) {
-                        System.out.print(c);
-                        LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
-                    }
-                    Farewell();
-                    System.exit(0); // Exit the game
-                } else {
-                    System.out.println("Input must be either 1 or 2."); // Continue loop until valid input
+            // Check if the input is either 1 or 2
+            if (userInput == 1) {
+                // Printing out login message
+                for (char c : "Logging in...\n\n".toCharArray()) {
+                    System.out.print(c);
+                    LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
                 }
+                game.init();
+                break;
 
+            } else if (userInput == 2) { // Exit loop on valid input
+                for (char c : "\nExiting...\n".toCharArray()) {
+                    System.out.print(c);
+                    LockSupport.parkNanos(TimeUnit.MILLISECONDS.toNanos(140));
+                }
+                Farewell();
+                System.exit(0); // Exit the game
+            } else {
+                System.out.println("Input must be either 1 or 2."); // Continue loop until valid input
             }
         }
     }
-
-
-
-
-
-
-
-
+}
