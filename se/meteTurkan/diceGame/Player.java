@@ -25,6 +25,8 @@ public class Player {
         this.playerName = playerName; // Set player name
     }
 
+    public void setPointNull() {this.point = 0;} // Setting users point to Zero for each turn
+    
     // Get functions
     public String getPlayerName() {
         return playerName;
